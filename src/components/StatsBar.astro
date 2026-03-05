@@ -1,0 +1,32 @@
+---
+import { AnimatedCounter } from "./AnimatedCounter";
+---
+
+<section class="relative border-y border-border bg-card/50" aria-label="Key statistics">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4">
+      <div class="py-8 md:py-10 px-6 text-center border-r border-border border-b md:border-b-0">
+        <div class="text-3xl md:text-4xl font-bold text-accent font-mono">
+          <AnimatedCounter client:visible target={147} suffix="+" />
+        </div>
+        <div class="mt-1 text-xs uppercase tracking-widest text-muted">Sites Built</div>
+      </div>
+      <div class="py-8 md:py-10 px-6 text-center border-r border-border border-b md:border-b-0">
+        <div class="text-3xl md:text-4xl font-bold text-accent font-mono">
+          <AnimatedCounter client:visible target={32} suffix="" />
+        </div>
+        <div class="mt-1 text-xs uppercase tracking-widest text-muted">Cities Served</div>
+      </div>
+      <div class="py-8 md:py-10 px-6 text-center border-r border-border border-b md:border-b-0">
+        <div class="text-3xl md:text-4xl font-bold text-accent font-mono">
+          <AnimatedCounter client:visible target={24} suffix="hr" />
+        </div>
+        <div class="mt-1 text-xs uppercase tracking-widest text-muted">Delivery Time</div>
+      </div>
+      <div class="py-8 md:py-10 px-6 text-center">
+        <div class="text-3xl md:text-4xl font-bold text-accent font-mono">4.9</div>
+        <div class="mt-1 text-xs uppercase tracking-widest text-muted">Client Rating</div>
+      </div>
+    </div>
+  </div>
+</section>

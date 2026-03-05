@@ -1,0 +1,52 @@
+---
+import Base from "../../layouts/Base.astro";
+import Navbar from "../../components/Navbar.astro";
+import HeroSplit from "../../components/HeroSplit.astro";
+import ServicesGrid from "../../components/ServicesGrid.astro";
+import StatsCounter from "../../components/StatsCounter.astro";
+import CTABanner from "../../components/CTABanner.astro";
+import Footer from "../../components/Footer.astro";
+import { NICHE_DATA } from "../../data/niches";
+
+const data = NICHE_DATA.lawyers;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Creative Axe",
+  description: data.metaDescription,
+  url: "https://creativeaxe.co/for/lawyers",
+  areaServed: "United States",
+  knowsAbout: data.title,
+};
+---
+
+<Base title={`${data.title} — Creative Axe`} description={data.metaDescription} jsonLd={jsonLd}>
+  <Navbar />
+  <main id="main-content" class="pt-16">
+    <HeroSplit
+      headline={data.headline}
+      subheadline={data.subheadline}
+      body={data.body}
+      ctaLabel="Get Your Free Audit"
+      ctaHref="/services"
+      imageSrc={data.imageSrc}
+      imageAlt={data.imageAlt}
+    />
+    <ServicesGrid
+      headline={`What We Build for ${data.title.replace("Websites for ", "")}`}
+      subheadline="Every service tailored to your industry and your customers."
+      columns={4}
+      services={data.services}
+    />
+    <StatsCounter stats={data.stats} />
+    <CTABanner
+      headline={data.ctaHeadline}
+      subheadline="Find out exactly where your current website is losing you customers. Free, no strings attached."
+      ctaLabel="Start Your Free Audit"
+      ctaHref="/services"
+      secondaryLabel="See Our Work"
+      secondaryHref="/work"
+    />
+  </main>
+  <Footer />
+</Base>

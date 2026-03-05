@@ -1,0 +1,104 @@
+---
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
+import HeroMinimal from "../components/HeroMinimal.astro";
+import PortfolioBlock from "../components/PortfolioBlock.astro";
+import StatsCounter from "../components/StatsCounter.astro";
+import CTABanner from "../components/CTABanner.astro";
+import Footer from "../components/Footer.astro";
+
+const projects = [
+  {
+    title: "Summit Dental Group",
+    description: "Complete rebrand and website for a multi-location dental practice. Online booking integration, 3x increase in new patient inquiries.",
+    imageSrc: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80",
+    imageAlt: "Summit Dental Group website showcase",
+    tags: ["Web Design", "SEO", "Branding"],
+  },
+  {
+    title: "Precision Plumbing Co.",
+    description: "Emergency-focused landing pages with click-to-call CTA. Reduced cost-per-lead by 62% while doubling call volume.",
+    imageSrc: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    imageAlt: "Precision Plumbing website showcase",
+    tags: ["Web Design", "Google Ads"],
+  },
+  {
+    title: "Ember Kitchen & Bar",
+    description: "Atmospheric website with online ordering and reservation system. Instagram integration drove 40% more weekend bookings.",
+    imageSrc: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80",
+    imageAlt: "Ember Kitchen restaurant website showcase",
+    tags: ["Web Design", "Branding"],
+  },
+  {
+    title: "Atlas Roofing Solutions",
+    description: "Lead-gen focused site with before/after galleries and quote calculator. 180% increase in qualified estimate requests.",
+    imageSrc: "https://images.unsplash.com/photo-1632759145351-1d592919f522?w=800&q=80",
+    imageAlt: "Atlas Roofing website showcase",
+    tags: ["Web Design", "SEO", "Ads"],
+  },
+  {
+    title: "Bloom Wellness Spa",
+    description: "Luxury brand identity and website with integrated booking. Organic traffic up 220% in 6 months.",
+    imageSrc: "https://images.unsplash.com/photo-1540555700478-4be289fbec6d?w=800&q=80",
+    imageAlt: "Bloom Wellness Spa website showcase",
+    tags: ["Branding", "Web Design", "SEO"],
+  },
+  {
+    title: "Ironside Fitness",
+    description: "High-energy site with class scheduling, trainer profiles, and membership sign-up. 95+ Lighthouse score.",
+    imageSrc: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80",
+    imageAlt: "Ironside Fitness website showcase",
+    tags: ["Web Design", "Branding"],
+  },
+];
+
+const stats = [
+  { value: 3, suffix: "x", label: "Average ROI" },
+  { value: 62, suffix: "%", label: "Lower Cost Per Lead" },
+  { value: 220, suffix: "%", label: "Organic Traffic Growth" },
+  { value: 95, suffix: "+", label: "Lighthouse Scores" },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Creative Axe Portfolio",
+  description: "Premium websites built for businesses across every industry.",
+  url: "https://creativeaxe.co/work",
+  numberOfItems: projects.length,
+  itemListElement: projects.map((p, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: p.title,
+    description: p.description,
+  })),
+};
+---
+
+<Base
+  title="Our Work — Creative Axe"
+  description="See the premium websites, brands, and digital campaigns we've built for businesses across every industry."
+  jsonLd={jsonLd}
+>
+  <Navbar />
+  <main id="main-content" class="pt-16">
+    <HeroMinimal
+      headline="Our Work"
+      subheadline="Every project starts with a gap analysis and ends with a site that converts. Here's a look at what we've built."
+    />
+    <PortfolioBlock
+      headline="Featured Projects"
+      subheadline="A selection of recent builds across industries — from plumbers to dentists to restaurants."
+      columns={3}
+      projects={projects}
+    />
+    <StatsCounter headline="Results That Matter" stats={stats} />
+    <CTABanner
+      headline="Want Results Like These?"
+      subheadline="Start with a free website audit. We'll show you exactly what's broken and what we'd build to fix it."
+      ctaLabel="Get Your Free Audit"
+      ctaHref="/services"
+    />
+  </main>
+  <Footer />
+</Base>

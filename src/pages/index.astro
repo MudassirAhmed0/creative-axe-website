@@ -1,0 +1,37 @@
+---
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import StatsBar from "../components/StatsBar.astro";
+import HowItWorks from "../components/HowItWorks.astro";
+import Industries from "../components/Industries.astro";
+import Showcase from "../components/Showcase.astro";
+import FinalCTA from "../components/FinalCTA.astro";
+import Footer from "../components/Footer.astro";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Creative Axe",
+  url: "https://creativeaxe.co",
+  description: "We build websites for local businesses in 24 hours. No jargon, no hassle — just results.",
+  areaServed: "United States",
+};
+---
+
+<Base
+  title="Creative Axe — We Build Websites. You Get Customers."
+  description="We find local businesses, build them a stunning website in under 24 hours, and deliver it for free. No jargon. No hassle. Just results."
+  jsonLd={jsonLd}
+>
+  <Navbar />
+  <main id="main-content" class="pt-16">
+    <Hero />
+    <StatsBar />
+    <HowItWorks />
+    <Industries />
+    <Showcase />
+    <FinalCTA />
+  </main>
+  <Footer />
+</Base>

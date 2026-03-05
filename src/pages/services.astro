@@ -1,0 +1,73 @@
+---
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
+import HeroMinimal from "../components/HeroMinimal.astro";
+import ServicesCards from "../components/ServicesCards.astro";
+import StatsCounter from "../components/StatsCounter.astro";
+import CTABanner from "../components/CTABanner.astro";
+import Footer from "../components/Footer.astro";
+
+const services = [
+  { name: "Custom Web Design", description: "No templates. No page builders. Every site is designed from scratch for your brand, your customers, and your conversion goals. Mobile-first, blazing fast, and built to rank.", icon: "🎨" },
+  { name: "Search Engine Optimization", description: "Technical SEO audits, local pack optimization, content strategy, and ongoing rank tracking. We get you found by the customers already searching for what you sell.", icon: "🔍" },
+  { name: "Branding & Identity", description: "Logo design, color systems, typography, brand voice, and complete style guides. We make your business look like the premium choice — because it is.", icon: "✦" },
+  { name: "Digital Advertising", description: "Google Ads, Meta Ads, and retargeting campaigns built on real conversion data. We don't just drive traffic — we drive traffic that converts.", icon: "📈" },
+  { name: "Website Audits", description: "Free comprehensive audits that expose exactly where your current site is bleeding money. Speed, mobile, SEO, conversion — we check it all.", icon: "🔬" },
+  { name: "Ongoing Support", description: "Monthly maintenance, performance monitoring, content updates, and technical support. We don't build and vanish — we stay and optimize.", icon: "🛡️" },
+];
+
+const stats = [
+  { value: 150, suffix: "+", label: "Sites Launched" },
+  { value: 98, suffix: "%", label: "Client Retention" },
+  { value: 40, suffix: "%", label: "Avg. Conversion Lift" },
+  { value: 95, suffix: "+", label: "Lighthouse Score" },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Creative Axe",
+  description: "Premium web design agency specializing in high-converting websites, SEO, branding, and digital advertising.",
+  url: "https://creativeaxe.co/services",
+  areaServed: "United States",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Web Design Services",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Custom Web Design" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Search Engine Optimization" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Branding & Identity" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Digital Advertising" } },
+    ],
+  },
+};
+---
+
+<Base
+  title="Our Services — Creative Axe"
+  description="Web design, SEO, branding, and digital advertising services for businesses ready to convert more customers online."
+  jsonLd={jsonLd}
+>
+  <Navbar />
+  <main id="main-content" class="pt-16">
+    <HeroMinimal
+      headline="Our Services"
+      subheadline="Full-service digital solutions engineered to turn your website into your best-performing salesperson."
+    />
+    <ServicesCards
+      headline="What We Build"
+      subheadline="Every service is designed to work together — because a pretty site without SEO is invisible, and great ads without a converting site is burning money."
+      services={services}
+    />
+    <StatsCounter headline="Our Track Record" stats={stats} />
+    <CTABanner
+      headline="Get a Free Quote"
+      subheadline="Tell us about your business and we'll show you exactly what we'd build — with a free audit and mockup. No commitment."
+      ctaLabel="Start Your Free Audit"
+      ctaHref="/services"
+      secondaryLabel="See Our Work"
+      secondaryHref="/work"
+    />
+  </main>
+  <Footer />
+</Base>

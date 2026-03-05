@@ -1,0 +1,64 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-border bg-background">
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div class="md:col-span-1">
+        <a href="/" class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center font-bold text-background text-sm">
+            CA
+          </div>
+          <span class="font-bold text-lg tracking-tight">
+            Creative<span class="text-accent">Axe</span>
+          </span>
+        </a>
+        <p class="text-sm text-muted leading-relaxed">
+          We build websites for local businesses in 24 hours. No jargon, no hassle — just results.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="font-semibold text-sm mb-4 text-foreground">Services</h4>
+        <ul class="space-y-2">
+          {["Custom Websites", "Online Booking", "SEO Setup", "Google Ads", "Social Media"].map((item) => (
+            <li>
+              <a href="/services" class="text-sm text-muted hover:text-foreground transition-colors">{item}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold text-sm mb-4 text-foreground">Industries</h4>
+        <ul class="space-y-2">
+          {[
+            { label: "Restaurants", slug: "restaurants" },
+            { label: "Plumbers", slug: "plumbers" },
+            { label: "Dentists", slug: "dentists" },
+            { label: "Contractors", slug: "contractors" },
+            { label: "Lawyers", slug: "lawyers" },
+          ].map((item) => (
+            <li>
+              <a href={`/for/${item.slug}`} class="text-sm text-muted hover:text-foreground transition-colors">{item.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold text-sm mb-4 text-foreground">Company</h4>
+        <ul class="space-y-2">
+          <li><a href="/work" class="text-sm text-muted hover:text-foreground transition-colors">Our Work</a></li>
+          <li><a href="/services" class="text-sm text-muted hover:text-foreground transition-colors">Get Your Free Site</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p class="text-xs text-muted">&copy; {year} Creative Axe. All rights reserved.</p>
+      <p class="text-xs text-muted">Built with precision. Delivered with speed.</p>
+    </div>
+  </div>
+</footer>
