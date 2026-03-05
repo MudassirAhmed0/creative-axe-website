@@ -1,26 +1,63 @@
-<section class="relative py-32 md:py-40 border-t border-border overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-b from-background via-accent/[0.04] to-background pointer-events-none" aria-hidden="true"></div>
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-accent/[0.06] blur-[100px] pointer-events-none" aria-hidden="true"></div>
-  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" aria-hidden="true"></div>
+---
+interface Props {
+  headline?: string;
+  description?: string;
+}
 
-  <div class="relative max-w-3xl mx-auto px-6 text-center">
-    <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
-      Ready to get<br />
-      <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light">more customers?</span>
-    </h2>
-    <p class="mt-6 text-lg text-muted max-w-lg mx-auto">
-      We'll build your website for free. You only pay if you love it. No risk, no commitment — just results.
+const {
+  headline = "Ready to grow?",
+  description = "Let's build a website that actually works for your business.",
+} = Astro.props;
+---
+
+<section
+  id="contact"
+  class="section-over-hero relative py-28 md:py-44 px-6 md:px-16 lg:px-24 text-center overflow-hidden"
+  data-theme="light"
+>
+  <!-- Orange gradient bg -->
+  <div class="absolute inset-0 bg-gradient-to-br from-accent via-[#ea580c] to-[#c2410c]"></div>
+
+  <!-- Subtle grain -->
+  <div class="absolute inset-0 grain"></div>
+
+  <div class="relative z-10">
+    <p
+      data-reveal
+      class="text-sm text-black/50 font-mono tracking-widest uppercase mb-8"
+    >
+      Get Started
     </p>
-    <div class="mt-10">
-      <a
-        href="/services"
-        class="group inline-flex items-center gap-3 bg-accent hover:bg-accent-light text-background font-bold px-10 py-5 rounded-xl text-lg transition-all duration-300 hover:shadow-[0_0_60px_rgba(249,115,22,0.3)]"
-      >
-        Get Your Free Site
-        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-      </a>
-    </div>
+    <h2
+      data-reveal
+      style="--delay: 100ms"
+      class="text-[clamp(2.5rem,7vw,6rem)] font-bold text-black leading-[0.92] tracking-tight mb-6"
+    >
+      {headline}
+    </h2>
+    <p
+      data-reveal
+      style="--delay: 200ms"
+      class="text-black/60 text-base md:text-lg max-w-md mx-auto mb-12 leading-relaxed"
+    >
+      {description}
+    </p>
+    <a
+      data-reveal
+      style="--delay: 300ms"
+      href="mailto:hello@creativeaxe.co"
+      class="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-black text-white text-sm font-semibold hover:bg-surface transition-colors duration-300"
+    >
+      Start Your Project
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path
+          d="M2 7h10M8 3l4 4-4 4"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </a>
   </div>
 </section>

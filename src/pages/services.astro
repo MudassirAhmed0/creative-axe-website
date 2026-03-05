@@ -1,19 +1,72 @@
 ---
 import Base from "../layouts/Base.astro";
-import Navbar from "../components/Navbar.astro";
-import HeroMinimal from "../components/HeroMinimal.astro";
-import ServicesCards from "../components/ServicesCards.astro";
-import StatsCounter from "../components/StatsCounter.astro";
-import CTABanner from "../components/CTABanner.astro";
-import Footer from "../components/Footer.astro";
+import FinalCTA from "../components/FinalCTA.astro";
+import { AnimatedCounter } from "../components/AnimatedCounter.tsx";
 
 const services = [
-  { name: "Custom Web Design", description: "No templates. No page builders. Every site is designed from scratch for your brand, your customers, and your conversion goals. Mobile-first, blazing fast, and built to rank.", icon: "🎨" },
-  { name: "Search Engine Optimization", description: "Technical SEO audits, local pack optimization, content strategy, and ongoing rank tracking. We get you found by the customers already searching for what you sell.", icon: "🔍" },
-  { name: "Branding & Identity", description: "Logo design, color systems, typography, brand voice, and complete style guides. We make your business look like the premium choice — because it is.", icon: "✦" },
-  { name: "Digital Advertising", description: "Google Ads, Meta Ads, and retargeting campaigns built on real conversion data. We don't just drive traffic — we drive traffic that converts.", icon: "📈" },
-  { name: "Website Audits", description: "Free comprehensive audits that expose exactly where your current site is bleeding money. Speed, mobile, SEO, conversion — we check it all.", icon: "🔬" },
-  { name: "Ongoing Support", description: "Monthly maintenance, performance monitoring, content updates, and technical support. We don't build and vanish — we stay and optimize.", icon: "🛡️" },
+  {
+    title: "Custom Web Design & Development",
+    num: "01",
+    description:
+      "No templates. No page builders. Every site is designed from scratch for your brand, your customers, and your conversion goals. Mobile-first, blazing fast, and built to rank.",
+  },
+  {
+    title: "Search Engine Optimization",
+    num: "02",
+    description:
+      "Technical SEO audits, local pack optimization, content strategy, and ongoing rank tracking. We get you found by the customers already searching for what you sell.",
+  },
+  {
+    title: "Branding & Identity",
+    num: "03",
+    description:
+      "Logo design, color systems, typography, brand voice, and complete style guides. We make your business look like the premium choice — because it is.",
+  },
+  {
+    title: "Digital Advertising",
+    num: "04",
+    description:
+      "Google Ads, Meta Ads, and retargeting campaigns built on real conversion data. We don't just drive traffic — we drive traffic that converts.",
+  },
+  {
+    title: "Website Audits",
+    num: "05",
+    description:
+      "Free comprehensive audits that expose exactly where your current site is bleeding money. Speed, mobile, SEO, conversion — we check it all.",
+  },
+  {
+    title: "Ongoing Support & Optimization",
+    num: "06",
+    description:
+      "Monthly maintenance, performance monitoring, content updates, and technical support. We don't build and vanish — we stay and optimize.",
+  },
+];
+
+const process = [
+  {
+    num: "01",
+    title: "Discovery",
+    description:
+      "We analyze your market, competitors, and customers to build a strategy that works.",
+  },
+  {
+    num: "02",
+    title: "Design",
+    description:
+      "Custom design tailored to your brand — reviewed and refined until it's perfect.",
+  },
+  {
+    num: "03",
+    title: "Build",
+    description:
+      "We develop your site with clean code, fast load times, and SEO baked in from day one.",
+  },
+  {
+    num: "04",
+    title: "Launch & Grow",
+    description:
+      "We launch, monitor, and continuously optimize to ensure lasting results.",
+  },
 ];
 
 const stats = [
@@ -27,47 +80,221 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: "Creative Axe",
-  description: "Premium web design agency specializing in high-converting websites, SEO, branding, and digital advertising.",
+  description:
+    "Premium web design agency specializing in high-converting websites, SEO, branding, and digital advertising.",
   url: "https://creativeaxe.co/services",
   areaServed: "United States",
-  hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: "Web Design Services",
-    itemListElement: [
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Custom Web Design" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Search Engine Optimization" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Branding & Identity" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Digital Advertising" } },
-    ],
-  },
 };
 ---
 
 <Base
-  title="Our Services — Creative Axe"
+  title="Services — Creative Axe"
   description="Web design, SEO, branding, and digital advertising services for businesses ready to convert more customers online."
   jsonLd={jsonLd}
 >
-  <Navbar />
-  <main id="main-content" class="pt-16">
-    <HeroMinimal
-      headline="Our Services"
-      subheadline="Full-service digital solutions engineered to turn your website into your best-performing salesperson."
-    />
-    <ServicesCards
-      headline="What We Build"
-      subheadline="Every service is designed to work together — because a pretty site without SEO is invisible, and great ads without a converting site is burning money."
-      services={services}
-    />
-    <StatsCounter headline="Our Track Record" stats={stats} />
-    <CTABanner
-      headline="Get a Free Quote"
-      subheadline="Tell us about your business and we'll show you exactly what we'd build — with a free audit and mockup. No commitment."
-      ctaLabel="Start Your Free Audit"
-      ctaHref="/services"
-      secondaryLabel="See Our Work"
-      secondaryHref="/work"
-    />
-  </main>
-  <Footer />
+  <!-- Hero -->
+  <section
+    class="bg-surface px-6 md:px-16 lg:px-24 pt-32 md:pt-44 pb-24 md:pb-32"
+    data-theme="dark"
+  >
+    <div class="flex flex-col lg:flex-row gap-12 lg:gap-24">
+      <div class="lg:w-1/3">
+        <p data-reveal class="text-xs text-accent font-mono tracking-widest uppercase">
+          Services
+        </p>
+      </div>
+      <div class="lg:w-2/3">
+        <h1
+          data-reveal
+          style="--delay: 100ms"
+          class="text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[0.95] tracking-tight mb-8"
+        >
+          Full-service digital<br />
+          <span class="text-accent">solutions</span>
+        </h1>
+        <p
+          data-reveal
+          style="--delay: 200ms"
+          class="text-lg text-ink-secondary max-w-xl leading-relaxed"
+        >
+          Every service is designed to work together — because a pretty site
+          without SEO is invisible, and great ads without a converting site is
+          burning money.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services List -->
+  <section class="bg-surface-alt py-28 md:py-44 px-6 md:px-16 lg:px-24 relative grain" data-theme="dark">
+    <div class="relative z-10 flex flex-col lg:flex-row gap-16 lg:gap-24">
+      <div class="lg:w-1/3">
+        <p data-reveal class="text-xs text-accent font-mono tracking-widest uppercase">
+          What We Offer
+        </p>
+      </div>
+      <div class="lg:w-2/3">
+        {
+          services.map((service, i) => (
+            <div
+              class="border-t border-rule-light"
+              data-reveal
+              style={`--delay: ${i * 80}ms`}
+              data-service-item
+            >
+              <button
+                class="w-full flex items-center justify-between py-6 md:py-8 text-left group cursor-pointer"
+                aria-expanded="false"
+              >
+                <div class="flex items-center gap-6 md:gap-10">
+                  <span class="text-xs font-mono text-ink-muted group-hover:text-accent transition-colors duration-300">
+                    {service.num}
+                  </span>
+                  <span class="text-xl md:text-3xl font-bold tracking-tight group-hover:text-accent transition-colors duration-300">
+                    {service.title}
+                  </span>
+                </div>
+                <span class="service-arrow w-10 h-10 rounded-full border border-rule-light flex items-center justify-center shrink-0 ml-4 transition-all duration-500 group-hover:border-accent group-hover:bg-accent-muted">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    class="transition-transform duration-500"
+                  >
+                    <path
+                      d="M7 3v8M3 7h8"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <div
+                class="service-content overflow-hidden transition-all duration-500 ease-out"
+                style="max-height: 0"
+              >
+                <p class="pb-8 text-ink-secondary text-base md:text-lg max-w-xl leading-relaxed pl-12 md:pl-[5.5rem]">
+                  {service.description}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+        <div class="border-t border-rule-light" data-reveal-line style="--delay: 480ms"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="bg-surface py-28 md:py-44 px-6 md:px-16 lg:px-24" data-theme="dark">
+    <div class="flex flex-col lg:flex-row gap-16 lg:gap-24 mb-20">
+      <div class="lg:w-1/3">
+        <p data-reveal class="text-xs text-accent font-mono tracking-widest uppercase">
+          Process
+        </p>
+      </div>
+      <div class="lg:w-2/3">
+        <h2
+          data-reveal
+          class="text-2xl md:text-4xl font-bold leading-tight tracking-tight"
+        >
+          From first conversation to measurable growth —
+          <span class="text-accent">a proven process.</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+      {
+        process.map((step, i) => (
+          <div
+            data-reveal
+            style={`--delay: ${i * 100}ms`}
+            class="border-t border-rule-light pt-6"
+          >
+            <span class="text-xs font-mono text-accent">{step.num}</span>
+            <h3 class="text-xl font-bold mt-3 mb-3">{step.title}</h3>
+            <p class="text-sm text-ink-secondary leading-relaxed">
+              {step.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="bg-surface-alt px-6 md:px-16 lg:px-24 py-28 md:py-44 relative grain" data-theme="dark">
+    <div class="relative z-10 flex flex-col lg:flex-row gap-16 lg:gap-24">
+      <div class="lg:w-1/3">
+        <p data-reveal class="text-xs text-accent font-mono tracking-widest uppercase">
+          Track Record
+        </p>
+      </div>
+      <div class="lg:w-2/3">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {
+            stats.map((stat, i) => (
+              <div data-reveal style={`--delay: ${i * 100}ms`} class="border-t border-rule-light pt-6">
+                <span class="text-4xl md:text-5xl font-bold tracking-tight block mb-2">
+                  <AnimatedCounter
+                    client:visible
+                    target={stat.value}
+                    suffix={stat.suffix}
+                  />
+                </span>
+                <span class="text-xs text-ink-muted">{stat.label}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FinalCTA
+    headline="Get a free quote"
+    description="Tell us about your business and we'll show you exactly what we'd build — with a free audit and mockup."
+  />
 </Base>
+
+<script>
+  document.querySelectorAll("[data-service-item]").forEach((item) => {
+    const btn = item.querySelector("button");
+    const content = item.querySelector(
+      ".service-content"
+    ) as HTMLElement | null;
+    const icon = item.querySelector(
+      ".service-arrow svg"
+    ) as SVGElement | null;
+
+    btn?.addEventListener("click", () => {
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+
+      document.querySelectorAll("[data-service-item]").forEach((other) => {
+        if (other !== item) {
+          const ob = other.querySelector("button");
+          const oc = other.querySelector(
+            ".service-content"
+          ) as HTMLElement | null;
+          const oi = other.querySelector(
+            ".service-arrow svg"
+          ) as SVGElement | null;
+          ob?.setAttribute("aria-expanded", "false");
+          if (oc) oc.style.maxHeight = "0";
+          if (oi) oi.style.transform = "rotate(0deg)";
+        }
+      });
+
+      btn.setAttribute("aria-expanded", String(!isOpen));
+      if (content) {
+        content.style.maxHeight = isOpen ? "0" : content.scrollHeight + "px";
+      }
+      if (icon) {
+        icon.style.transform = isOpen ? "rotate(0deg)" : "rotate(45deg)";
+      }
+    });
+  });
+</script>

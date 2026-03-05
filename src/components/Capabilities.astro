@@ -1,0 +1,148 @@
+---
+const capabilities = [
+  {
+    title: "Website Design & Development",
+    num: "01",
+    description:
+      "Custom-designed, high-performance websites built to convert. Mobile-first, lightning-fast, and engineered for growth. No templates.",
+  },
+  {
+    title: "Local SEO & Visibility",
+    num: "02",
+    description:
+      "Dominate local search results. Google Business optimization, local citations, rank tracking, and content that brings your city's customers to you.",
+  },
+  {
+    title: "Brand Strategy & Identity",
+    num: "03",
+    description:
+      "Logo, color systems, typography, messaging. We make your business look like the premium choice your customers already want.",
+  },
+  {
+    title: "Performance Marketing",
+    num: "04",
+    description:
+      "Google Ads, Meta campaigns, retargeting — built on conversion data. We don't just drive traffic, we drive traffic that pays.",
+  },
+  {
+    title: "Conversion Optimization",
+    num: "05",
+    description:
+      "A/B testing, heatmaps, analytics. Continuous improvement of every digital touchpoint until your site becomes a revenue machine.",
+  },
+];
+---
+
+<section class="section-over-hero bg-surface-alt py-28 md:py-44 px-6 md:px-16 lg:px-24 relative grain" data-theme="dark">
+  <div class="relative z-10">
+    <div class="flex flex-col lg:flex-row gap-16 lg:gap-24 mb-16 md:mb-24">
+      <div class="lg:w-1/3">
+        <p data-reveal class="text-xs text-accent font-mono tracking-widest uppercase">
+          Capabilities
+        </p>
+      </div>
+      <div class="lg:w-2/3">
+        <h2
+          data-reveal
+          style="--delay: 100ms"
+          class="text-3xl md:text-5xl lg:text-6xl font-bold leading-[0.95] tracking-tight"
+        >
+          Everything you need<br class="hidden md:block" />
+          to grow <span class="text-accent">online</span>
+        </h2>
+      </div>
+    </div>
+
+    <div id="capabilities-list">
+      {
+        capabilities.map((cap, i) => (
+          <div
+            class="border-t border-rule-light"
+            data-reveal
+            style={`--delay: ${i * 80}ms`}
+            data-capability
+          >
+            <button
+              class="w-full flex items-center justify-between py-6 md:py-8 text-left group cursor-pointer"
+              aria-expanded="false"
+            >
+              <div class="flex items-center gap-6 md:gap-10">
+                <span class="text-xs font-mono text-ink-muted group-hover:text-accent transition-colors duration-300">
+                  {cap.num}
+                </span>
+                <span class="text-xl md:text-3xl lg:text-4xl font-bold tracking-tight group-hover:text-accent transition-colors duration-300">
+                  {cap.title}
+                </span>
+              </div>
+              <span class="capability-arrow w-10 h-10 rounded-full border border-rule-light flex items-center justify-center shrink-0 ml-4 transition-all duration-500 group-hover:border-accent group-hover:bg-accent-muted">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  class="transition-transform duration-500"
+                >
+                  <path
+                    d="M7 3v8M3 7h8"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+            </button>
+            <div
+              class="capability-content overflow-hidden transition-all duration-500 ease-out"
+              style="max-height: 0"
+            >
+              <p class="pb-8 text-ink-secondary text-base md:text-lg max-w-xl leading-relaxed pl-12 md:pl-[5.5rem]">
+                {cap.description}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+      <div class="border-t border-rule-light" data-reveal-line style="--delay: 400ms"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll("[data-capability]").forEach((item) => {
+    const btn = item.querySelector("button");
+    const content = item.querySelector(
+      ".capability-content"
+    ) as HTMLElement | null;
+    const arrow = item.querySelector(
+      ".capability-arrow"
+    ) as HTMLElement | null;
+    const icon = arrow?.querySelector("svg") as SVGElement | null;
+
+    btn?.addEventListener("click", () => {
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+
+      document.querySelectorAll("[data-capability]").forEach((other) => {
+        if (other !== item) {
+          const ob = other.querySelector("button");
+          const oc = other.querySelector(
+            ".capability-content"
+          ) as HTMLElement | null;
+          const oa = other.querySelector(
+            ".capability-arrow svg"
+          ) as SVGElement | null;
+          ob?.setAttribute("aria-expanded", "false");
+          if (oc) oc.style.maxHeight = "0";
+          if (oa) oa.style.transform = "rotate(0deg)";
+        }
+      });
+
+      btn.setAttribute("aria-expanded", String(!isOpen));
+      if (content) {
+        content.style.maxHeight = isOpen ? "0" : content.scrollHeight + "px";
+      }
+      if (icon) {
+        icon.style.transform = isOpen ? "rotate(0deg)" : "rotate(45deg)";
+      }
+    });
+  });
+</script>

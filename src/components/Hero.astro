@@ -1,68 +1,123 @@
-<section class="relative min-h-[90vh] flex items-center overflow-hidden">
-  <!-- Background glow -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] rounded-full bg-accent/8 blur-[120px] animate-pulse-glow pointer-events-none"></div>
-  <div class="absolute top-20 right-20 w-[300px] h-[300px] rounded-full bg-accent/5 blur-[80px] pointer-events-none"></div>
+---
+---
 
-  <!-- Diagonal cut -->
-  <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-accent/[0.03] to-transparent skew-x-[-6deg] origin-top-right pointer-events-none"></div>
-
-  <!-- Grid pattern -->
+<section
+  class="hero-sticky relative min-h-[100svh] bg-surface flex flex-col overflow-hidden"
+  data-theme="dark"
+>
+  <!-- Background accent glow — follows mouse -->
   <div
-    class="absolute inset-0 pointer-events-none opacity-[0.03]"
-    style="background-image: linear-gradient(#fafafa 1px, transparent 1px), linear-gradient(90deg, #fafafa 1px, transparent 1px); background-size: 60px 60px;"
-  ></div>
+    data-mouse-parallax="-0.5"
+    class="absolute top-1/4 right-[-10%] w-[700px] h-[700px] rounded-full opacity-[0.05] blur-[150px] pointer-events-none"
+    style="background: radial-gradient(circle, #f97316 0%, transparent 70%); will-change: transform;"
+  >
+  </div>
 
-  <div class="relative max-w-7xl mx-auto px-6 py-32">
-    <div class="max-w-4xl">
-      <!-- Tagline -->
-      <div class="animate-fade-up inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent/30 bg-accent/5 mb-8">
-        <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
-        <span class="text-xs font-mono text-accent tracking-wider uppercase">Building sites daily</span>
+  <!-- Secondary glow — opposite direction -->
+  <div
+    data-mouse-parallax="0.3"
+    class="absolute bottom-1/4 left-[-10%] w-[500px] h-[500px] rounded-full opacity-[0.03] blur-[120px] pointer-events-none"
+    style="background: radial-gradient(circle, #f97316 0%, transparent 70%); will-change: transform;"
+  >
+  </div>
+
+  <!-- Grain -->
+  <div class="absolute inset-0 grain pointer-events-none"></div>
+
+  <!-- Main content -->
+  <div class="relative z-10 flex-1 flex flex-col justify-between px-6 md:px-16 lg:px-24 pt-28 md:pt-36 pb-12 md:pb-16">
+    <!-- Headline -->
+    <div class="flex-1 flex flex-col justify-center">
+      <div class="mb-6">
+        <p
+          data-hero-reveal
+          style="--delay: 200ms"
+          class="text-sm md:text-base text-accent font-mono tracking-wide mb-6 md:mb-8"
+        >
+          Web Design Agency
+        </p>
       </div>
 
-      <!-- Headline — NO opacity:0 start to avoid LCP delay -->
-      <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95]">
-        We Build<br />
-        Websites.<br />
-        <span class="relative inline-block">
-          <span class="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light">You Get</span>
-        </span><br />
-        Customers.
+      <h1 class="text-[clamp(3rem,10vw,9rem)] font-bold leading-[0.88] tracking-[-0.04em]">
+        <div data-line-reveal style="--delay: 400ms">
+          <span>We build websites</span>
+        </div>
+        <div data-line-reveal style="--delay: 550ms">
+          <span>that <em class="text-accent not-italic">convert</em></span>
+        </div>
       </h1>
-
-      <!-- Subtext -->
-      <p class="animate-fade-up delay-200 mt-8 text-lg sm:text-xl text-muted max-w-xl leading-relaxed">
-        We find local businesses without a web presence, build them a stunning website, and deliver it in under 24 hours.
-        <span class="text-foreground font-medium">No jargon. No hassle.</span>
-      </p>
-
-      <!-- CTAs -->
-      <div class="animate-fade-up delay-300 mt-10 flex flex-wrap gap-4">
-        <a
-          href="/services"
-          class="group relative inline-flex items-center gap-2 bg-accent hover:bg-accent-light text-background font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-[0_0_40px_rgba(249,115,22,0.3)]"
-        >
-          Get Your Free Site
-          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-            <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </a>
-        <a
-          href="/work"
-          class="inline-flex items-center gap-2 border border-border hover:border-muted text-foreground font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:bg-card"
-        >
-          See Our Work
-        </a>
-      </div>
     </div>
 
-    <!-- Floating axe slash decoration -->
-    <div class="hidden lg:block absolute right-12 top-1/2 -translate-y-1/2" aria-hidden="true">
-      <div class="relative w-64 h-80">
-        <div class="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-transparent via-accent/40 to-transparent rotate-[15deg]"></div>
-        <div class="absolute top-4 right-8 w-0.5 h-3/4 bg-gradient-to-b from-transparent via-accent/20 to-transparent rotate-[15deg]"></div>
-        <div class="absolute top-8 right-16 w-0.5 h-1/2 bg-gradient-to-b from-transparent via-accent/10 to-transparent rotate-[15deg]"></div>
+    <!-- Bottom bar -->
+    <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 md:gap-12">
+      <!-- Stats ticker -->
+      <div
+        data-hero-reveal
+        style="--delay: 800ms"
+        class="flex gap-10 md:gap-16"
+      >
+        <div>
+          <span class="text-2xl md:text-3xl font-bold tracking-tight">147+</span>
+          <span class="block text-xs text-ink-muted mt-1">Sites Launched</span>
+        </div>
+        <div class="w-px bg-rule-light self-stretch"></div>
+        <div>
+          <span class="text-2xl md:text-3xl font-bold tracking-tight">98%</span>
+          <span class="block text-xs text-ink-muted mt-1">Client Retention</span>
+        </div>
       </div>
+
+      <!-- Tagline -->
+      <p
+        data-hero-reveal
+        style="--delay: 900ms"
+        class="max-w-sm text-sm text-ink-secondary leading-relaxed md:text-right"
+      >
+        Premium websites for local businesses.
+        <br class="hidden md:block" />
+        Turning visitors into customers, clicks into growth.
+      </p>
     </div>
   </div>
+
+  <!-- Scroll indicator -->
+  <div
+    data-hero-reveal
+    style="--delay: 1200ms"
+    class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+  >
+    <span class="text-[10px] text-ink-muted tracking-[0.25em] uppercase font-mono"
+      >Scroll</span
+    >
+    <div class="w-px h-8 bg-rule-light relative overflow-hidden">
+      <div class="absolute inset-0 bg-accent animate-scroll-line"></div>
+    </div>
+  </div>
+
+  <!-- Top-right accent mark — follows mouse -->
+  <div
+    data-hero-reveal
+    data-mouse-parallax="0.8"
+    style="--delay: 1000ms; will-change: transform;"
+    class="absolute top-28 right-6 md:right-16 lg:right-24 hidden md:block z-10"
+  >
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" class="text-accent opacity-40">
+      <path d="M24 0v48M0 24h48" stroke="currentColor" stroke-width="0.5" />
+      <circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="0.5" />
+    </svg>
+  </div>
 </section>
+
+<style>
+  @keyframes scroll-line {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+  .animate-scroll-line {
+    animation: scroll-line 1.5s cubic-bezier(0.55, 0, 0.1, 1) infinite;
+  }
+</style>

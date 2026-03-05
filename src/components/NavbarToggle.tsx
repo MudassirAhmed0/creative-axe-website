@@ -1,48 +1,46 @@
 import { useState } from "react";
 
-export default function NavbarToggle() {
+interface Props {
+  links: Array<{ href: string; label: string }>;
+}
+
+export default function NavbarToggle({ links }: Props) {
   const [open, setOpen] = useState(false);
 
   return (
     <>
       <button
         onClick={() => setOpen(!open)}
-        className="p-2 text-muted hover:text-foreground"
+        className="relative z-[60] w-10 h-10 flex items-center justify-center md:hidden"
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
       >
-        <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-          {open ? (
-            <>
-              <line x1="6" y1="6" x2="18" y2="18" />
-              <line x1="6" y1="18" x2="18" y2="6" />
-            </>
-          ) : (
-            <>
-              <line x1="4" y1="7" x2="20" y2="7" />
-              <line x1="4" y1="12" x2="20" y2="12" />
-              <line x1="4" y1="17" x2="20" y2="17" />
-            </>
-          )}
-        </svg>
+        <div className="w-6 flex flex-col gap-1.5">
+          <span
+            className={`block h-[1.5px] transition-all duration-300 origin-center ${
+              open ? "rotate-45 translate-y-[4.5px] bg-white" : "bg-white"
+            }`}
+          />
+          <span
+            className={`block h-[1.5px] transition-all duration-300 origin-center ${
+              open ? "-rotate-45 -translate-y-[4.5px] bg-white" : "bg-white"
+            }`}
+          />
+        </div>
       </button>
 
       {open && (
-        <div className="absolute top-16 left-0 right-0 border-t border-border bg-background/95 backdrop-blur-xl">
-          <div className="flex flex-col gap-1 p-4">
-            <a href="/services" onClick={() => setOpen(false)} className="px-4 py-3 rounded-lg text-muted hover:text-foreground hover:bg-card transition-colors">
-              Services
+        <div className="fixed inset-0 z-50 bg-[#0a0a0a] flex flex-col items-center justify-center gap-8">
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              className="text-3xl font-semibold text-white hover:text-[#f97316] transition-colors duration-300"
+            >
+              {link.label}
             </a>
-            <a href="/work" onClick={() => setOpen(false)} className="px-4 py-3 rounded-lg text-muted hover:text-foreground hover:bg-card transition-colors">
-              Our Work
-            </a>
-            <a href="/for/restaurants" onClick={() => setOpen(false)} className="px-4 py-3 rounded-lg text-muted hover:text-foreground hover:bg-card transition-colors">
-              Industries
-            </a>
-            <a href="/services" onClick={() => setOpen(false)} className="mt-2 text-center bg-accent hover:bg-accent-light text-background font-semibold px-5 py-3 rounded-lg transition-colors">
-              Get Your Free Site
-            </a>
-          </div>
+          ))}
         </div>
       )}
     </>

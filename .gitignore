@@ -17,6 +17,13 @@ pnpm-debug.log*
 .env
 .env.production
 
+# nano-banana generated images
+nano-banana/
+
+# research artifacts
+screenshots/
+scripts/
+
 # macOS-specific files
 .DS_Store
 

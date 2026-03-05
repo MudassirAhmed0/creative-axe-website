@@ -1,54 +1,56 @@
 ---
 import Base from "../layouts/Base.astro";
-import Navbar from "../components/Navbar.astro";
-import HeroMinimal from "../components/HeroMinimal.astro";
-import PortfolioBlock from "../components/PortfolioBlock.astro";
-import StatsCounter from "../components/StatsCounter.astro";
-import CTABanner from "../components/CTABanner.astro";
-import Footer from "../components/Footer.astro";
+import FinalCTA from "../components/FinalCTA.astro";
+import { AnimatedCounter } from "../components/AnimatedCounter.tsx";
 
 const projects = [
   {
-    title: "Summit Dental Group",
-    description: "Complete rebrand and website for a multi-location dental practice. Online booking integration, 3x increase in new patient inquiries.",
-    imageSrc: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80",
-    imageAlt: "Summit Dental Group website showcase",
+    name: "Summit Dental Group",
+    type: "Dental Practice",
+    description:
+      "Complete rebrand and website for a multi-location dental practice. Online booking integration, 3x increase in new patient inquiries.",
     tags: ["Web Design", "SEO", "Branding"],
+    result: "+3x patients",
   },
   {
-    title: "Precision Plumbing Co.",
-    description: "Emergency-focused landing pages with click-to-call CTA. Reduced cost-per-lead by 62% while doubling call volume.",
-    imageSrc: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    imageAlt: "Precision Plumbing website showcase",
+    name: "Precision Plumbing",
+    type: "Plumbing Company",
+    description:
+      "Emergency-focused landing pages with click-to-call CTA. Reduced cost-per-lead by 62% while doubling call volume.",
     tags: ["Web Design", "Google Ads"],
+    result: "-62% CPL",
   },
   {
-    title: "Ember Kitchen & Bar",
-    description: "Atmospheric website with online ordering and reservation system. Instagram integration drove 40% more weekend bookings.",
-    imageSrc: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80",
-    imageAlt: "Ember Kitchen restaurant website showcase",
+    name: "Ember Kitchen & Bar",
+    type: "Restaurant",
+    description:
+      "Atmospheric website with online ordering and reservation system. Instagram integration drove 40% more weekend bookings.",
     tags: ["Web Design", "Branding"],
+    result: "+40% bookings",
   },
   {
-    title: "Atlas Roofing Solutions",
-    description: "Lead-gen focused site with before/after galleries and quote calculator. 180% increase in qualified estimate requests.",
-    imageSrc: "https://images.unsplash.com/photo-1632759145351-1d592919f522?w=800&q=80",
-    imageAlt: "Atlas Roofing website showcase",
+    name: "Atlas Roofing Solutions",
+    type: "Contractor",
+    description:
+      "Lead-gen focused site with before/after galleries and quote calculator. 180% increase in qualified estimate requests.",
     tags: ["Web Design", "SEO", "Ads"],
+    result: "+180% leads",
   },
   {
-    title: "Bloom Wellness Spa",
-    description: "Luxury brand identity and website with integrated booking. Organic traffic up 220% in 6 months.",
-    imageSrc: "https://images.unsplash.com/photo-1540555700478-4be289fbec6d?w=800&q=80",
-    imageAlt: "Bloom Wellness Spa website showcase",
+    name: "Bloom Wellness Spa",
+    type: "Wellness & Beauty",
+    description:
+      "Luxury brand identity and website with integrated booking. Organic traffic up 220% in 6 months.",
     tags: ["Branding", "Web Design", "SEO"],
+    result: "+220% traffic",
   },
   {
-    title: "Ironside Fitness",
-    description: "High-energy site with class scheduling, trainer profiles, and membership sign-up. 95+ Lighthouse score.",
-    imageSrc: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80",
-    imageAlt: "Ironside Fitness website showcase",
-    tags: ["Web Design", "Branding"],
+    name: "CoolAir Pro",
+    type: "HVAC Company",
+    description:
+      "Emergency-first website with seasonal campaign landing pages. 75% more emergency calls in the first quarter.",
+    tags: ["Web Design", "Ads"],
+    result: "+75% calls",
   },
 ];
 
@@ -63,42 +65,148 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Creative Axe Portfolio",
-  description: "Premium websites built for businesses across every industry.",
+  description:
+    "Premium websites built for businesses across every industry.",
   url: "https://creativeaxe.co/work",
   numberOfItems: projects.length,
   itemListElement: projects.map((p, i) => ({
     "@type": "ListItem",
     position: i + 1,
-    name: p.title,
+    name: p.name,
     description: p.description,
   })),
 };
 ---
 
 <Base
-  title="Our Work — Creative Axe"
+  title="Work — Creative Axe"
   description="See the premium websites, brands, and digital campaigns we've built for businesses across every industry."
   jsonLd={jsonLd}
 >
-  <Navbar />
-  <main id="main-content" class="pt-16">
-    <HeroMinimal
-      headline="Our Work"
-      subheadline="Every project starts with a gap analysis and ends with a site that converts. Here's a look at what we've built."
-    />
-    <PortfolioBlock
-      headline="Featured Projects"
-      subheadline="A selection of recent builds across industries — from plumbers to dentists to restaurants."
-      columns={3}
-      projects={projects}
-    />
-    <StatsCounter headline="Results That Matter" stats={stats} />
-    <CTABanner
-      headline="Want Results Like These?"
-      subheadline="Start with a free website audit. We'll show you exactly what's broken and what we'd build to fix it."
-      ctaLabel="Get Your Free Audit"
-      ctaHref="/services"
-    />
-  </main>
-  <Footer />
+  <!-- Hero -->
+  <section
+    class="bg-surface px-6 md:px-16 lg:px-24 pt-32 md:pt-44 pb-24 md:pb-32"
+    data-theme="dark"
+  >
+    <div class="flex flex-col lg:flex-row gap-12 lg:gap-24">
+      <div class="lg:w-1/3">
+        <p data-reveal class="text-xs text-accent font-mono tracking-widest uppercase">
+          Work
+        </p>
+      </div>
+      <div class="lg:w-2/3">
+        <h1
+          data-reveal
+          style="--delay: 100ms"
+          class="text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[0.95] tracking-tight mb-8"
+        >
+          Selected <span class="text-accent">projects</span>
+        </h1>
+        <p
+          data-reveal
+          style="--delay: 200ms"
+          class="text-lg text-ink-secondary max-w-xl leading-relaxed"
+        >
+          Every project starts with a gap analysis and ends with a site that
+          converts. Here's a look at what we've built.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Grid -->
+  <section class="bg-surface px-6 md:px-16 lg:px-24 pb-24 md:pb-40" data-theme="dark">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
+      {
+        projects.map((project, i) => (
+          <div
+            class="group card-hover"
+            data-reveal
+            style={`--delay: ${(i % 2) * 150}ms`}
+          >
+            <div class="relative aspect-[4/3] rounded-lg overflow-hidden bg-surface-elevated border border-rule mb-5 glow-accent-hover">
+              <div class="card-image absolute inset-0 flex items-center justify-center">
+                <span class="text-ink-faint text-[clamp(1.5rem,4vw,3rem)] font-bold tracking-tight select-none group-hover:text-ink-muted transition-colors duration-500">
+                  {project.name}
+                </span>
+              </div>
+              {/* Hover overlay */}
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Result badge */}
+              <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span class="text-xs font-mono text-accent bg-surface/80 backdrop-blur-sm rounded-full px-3 py-1">
+                  {project.result}
+                </span>
+              </div>
+              {/* Arrow */}
+              <div class="absolute bottom-4 right-4 w-8 h-8 rounded-full border border-rule-light flex items-center justify-center opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:border-accent group-hover:bg-accent transition-all duration-300">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path
+                    d="M3 3h6v6M9 3L3 9"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="text-ink group-hover:text-surface"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="mb-3">
+              <h3 class="text-lg font-bold group-hover:text-accent transition-colors duration-300">
+                {project.name}
+              </h3>
+              <p class="text-sm text-ink-muted mt-0.5">{project.type}</p>
+            </div>
+            <p class="text-sm text-ink-secondary leading-relaxed mb-4">
+              {project.description}
+            </p>
+            <div class="flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span class="text-xs text-ink-muted border border-rule-light rounded-full px-3 py-1">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="bg-surface-alt py-28 md:py-44 px-6 md:px-16 lg:px-24 relative grain" data-theme="dark">
+    <div class="relative z-10 flex flex-col lg:flex-row gap-16 lg:gap-24">
+      <div class="lg:w-1/3">
+        <p data-reveal class="text-xs text-accent font-mono tracking-widest uppercase">
+          Results
+        </p>
+      </div>
+      <div class="lg:w-2/3">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+          {
+            stats.map((stat, i) => (
+              <div data-reveal style={`--delay: ${i * 100}ms`} class="border-t border-rule-light pt-6">
+                <span class="text-4xl md:text-5xl font-bold tracking-tight block mb-2">
+                  <AnimatedCounter
+                    client:visible
+                    target={stat.value}
+                    suffix={stat.suffix}
+                  />
+                </span>
+                <span class="text-xs text-ink-muted">
+                  {stat.label}
+                </span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FinalCTA
+    headline="Want results like these?"
+    description="Start with a free website audit. We'll show you exactly what's broken and what we'd build to fix it."
+  />
 </Base>

@@ -1,29 +1,79 @@
 ---
-import NavbarToggle from "./NavbarToggle";
+import NavbarToggle from "./NavbarToggle.tsx";
+
+const links = [
+  { href: "/services", label: "Services" },
+  { href: "/work", label: "Work" },
+  { href: "/#industries", label: "Industries" },
+  { href: "#contact", label: "Contact" },
+];
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border" aria-label="Main navigation">
-  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+<nav
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+  aria-label="Main navigation"
+>
+  <div
+    class="mx-auto flex items-center justify-between px-6 md:px-16 lg:px-24 h-16 md:h-20"
+  >
     <a href="/" class="flex items-center gap-2 group">
-      <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center font-bold text-background text-sm group-hover:scale-110 transition-transform">
-        CA
-      </div>
-      <span class="font-bold text-lg tracking-tight">
-        Creative<span class="text-accent">Axe</span>
+      <span
+        class="w-2 h-2 rounded-full bg-accent group-hover:scale-125 transition-transform duration-300"
+      ></span>
+      <span class="text-base font-semibold tracking-tight text-ink">
+        Creative Axe
       </span>
     </a>
 
-    <!-- Desktop -->
-    <div class="hidden md:flex items-center gap-8">
-      <a href="/services" class="text-sm text-muted hover:text-foreground transition-colors">Services</a>
-      <a href="/work" class="text-sm text-muted hover:text-foreground transition-colors">Our Work</a>
-      <a href="/for/restaurants" class="text-sm text-muted hover:text-foreground transition-colors">Industries</a>
-      <a href="/services" class="text-sm bg-accent hover:bg-accent-light text-background font-semibold px-5 py-2 rounded-lg transition-colors">
-        Get Your Free Site
-      </a>
+    <div class="hidden md:flex items-center gap-10">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class="accent-line text-sm text-ink-secondary hover:text-ink transition-colors duration-300"
+          >
+            {link.label}
+          </a>
+        ))
+      }
     </div>
 
-    <!-- Mobile toggle (React island — zero JS on desktop) -->
-    <NavbarToggle client:media="(max-width: 767px)" />
+    <NavbarToggle client:media="(max-width: 767px)" links={links} />
   </div>
 </nav>
+
+<script>
+  const navbar = document.getElementById("navbar");
+  let ticking = false;
+
+  function updateNav() {
+    if (window.scrollY > 60) {
+      navbar?.classList.add("nav-scrolled");
+    } else {
+      navbar?.classList.remove("nav-scrolled");
+    }
+    ticking = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        requestAnimationFrame(updateNav);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
+  updateNav();
+</script>
+
+<style>
+  .nav-scrolled {
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+</style>
