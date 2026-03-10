@@ -1,0 +1,350 @@
+---
+import Base from "../../layouts/Base.astro";
+
+const brand = {
+  name: "Forest Air",
+  phone: "727-865-6004",
+};
+
+const creatives = [
+  {
+    src: "/preview/forest-air/01-emergency.png",
+    label: "Emergency",
+    headline: "The Panic Ad",
+    text: "This ad meets your customer at their worst moment — 88 degrees, AC dead, midnight. One clear action: call you.",
+  },
+  {
+    src: "/preview/forest-air/02-trust.png",
+    label: "Trust",
+    headline: "The Proof Ad",
+    text: "Your reputation front and center — real numbers, real stars, a real technician by a branded truck. Trust at first scroll.",
+  },
+  {
+    src: "/preview/forest-air/03-offer.png",
+    label: "Offer",
+    headline: "The Scarcity Ad",
+    text: "$79 is the hook. Limited slots is the push. The trust badge answers the silent objection before they even ask it.",
+  },
+  {
+    src: "/preview/forest-air/04-educational.png",
+    label: "Educational",
+    headline: "The Value-First Ad",
+    text: "This one helps, not sells. Three warning signs every homeowner recognizes. By the CTA, they're self-diagnosing — and you're the doctor.",
+  },
+  {
+    src: "/preview/forest-air/05-seasonal.png",
+    label: "Seasonal",
+    headline: "The Split-Screen Ad",
+    text: "105 outside, 72 inside. The contrast says everything. Summer is coming, spots are limited, the decision is obvious.",
+  },
+];
+
+const title = `Creative Concepts — ${brand.name} | Creative Axe`;
+const description = `Custom ad creatives designed for ${brand.name}. Audit-informed, ready to deploy.`;
+---
+
+<Base title={title} description={description}>
+  <style is:global>
+    body { background-color: #18181b !important; }
+    body.modal-open { overflow: hidden; }
+  </style>
+
+  <style>
+    .creative-card {
+      cursor: pointer;
+      transition: transform 0.5s cubic-bezier(0.25, 0.74, 0.22, 0.99);
+    }
+    .creative-card:hover {
+      transform: translateY(-4px);
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-backdrop.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      position: fixed;
+      inset: 0;
+      z-index: 101;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .modal-content.is-open {
+      pointer-events: auto;
+      opacity: 1;
+    }
+
+    .modal-inner {
+      width: 100%;
+      max-width: 900px;
+      max-height: 90vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-radius: 12px;
+      background: #1e1e22;
+      transform: translateY(20px);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      overscroll-behavior: contain;
+    }
+    .modal-content.is-open .modal-inner {
+      transform: translateY(0);
+    }
+
+    .modal-inner::-webkit-scrollbar { width: 0; }
+
+    .modal-img {
+      width: 100%;
+      display: block;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .modal-body {
+      padding: 1.5rem 1.5rem 2rem;
+    }
+
+    .modal-close {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 102;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #a3a3a3;
+      font-size: 1.25rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .modal-close.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fafafa;
+    }
+
+    @media (min-width: 768px) {
+      .modal-inner {
+        flex-direction: row;
+        max-width: 860px;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .modal-img-wrap {
+        flex: 0 0 55%;
+        max-width: 55%;
+      }
+      .modal-img {
+        border-radius: 0;
+        height: 100%;
+        object-fit: cover;
+      }
+      .modal-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem 2rem;
+      }
+    }
+  </style>
+
+  <!-- Hero -->
+  <section
+    class="relative px-6 md:px-16 lg:px-24 pt-32 pb-14 md:pb-16"
+    style="background-color: #18181b"
+    data-theme="dark"
+  >
+    <div class="max-w-5xl">
+      <p
+        data-hero-reveal
+        class="text-xs font-mono tracking-[0.3em] uppercase text-accent mb-6"
+      >
+        Prepared for {brand.name}
+      </p>
+
+      <h1
+        data-hero-reveal
+        style="--delay: 150ms"
+        class="text-[clamp(2rem,5vw,4rem)] font-bold leading-[0.95] tracking-tight mb-6"
+      >
+        <span class="text-ink">We Audited Your Site.</span><br />
+        <span class="text-accent">Then Built Your Ads.</span>
+      </h1>
+
+      <p
+        data-hero-reveal
+        style="--delay: 300ms"
+        class="text-ink-secondary text-base md:text-lg max-w-xl leading-relaxed"
+      >
+        Five ad concepts built from a real audit of forestairac.com.
+        Your brand, your market, ready to run.
+      </p>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section
+    class="section-over-hero px-6 md:px-16 lg:px-24 pb-16 md:pb-24"
+    style="background-color: #18181b"
+    data-theme="dark"
+  >
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+      {creatives.slice(0, 3).map((c, i) => (
+        <div
+          data-reveal
+          style={`--delay: ${i * 80}ms`}
+          class="creative-card relative rounded-lg overflow-hidden"
+          data-modal-trigger={i}
+        >
+          <img
+            src={c.src}
+            alt={`${brand.name} ${c.label} ad`}
+            class="w-full h-auto block"
+            loading={i === 0 ? "eager" : "lazy"}
+          />
+        </div>
+      ))}
+    </div>
+    <div class="grid grid-cols-2 gap-3 md:gap-4 mt-3 md:mt-4 lg:max-w-[66.66%] lg:mx-auto">
+      {creatives.slice(3).map((c, i) => (
+        <div
+          data-reveal
+          style={`--delay: ${(i + 3) * 80}ms`}
+          class="creative-card relative rounded-lg overflow-hidden"
+          data-modal-trigger={i + 3}
+        >
+          <img
+            src={c.src}
+            alt={`${brand.name} ${c.label} ad`}
+            class="w-full h-auto block"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="modal-backdrop"></div>
+  <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+  <div class="modal-content" id="modal-content">
+    <div class="modal-inner">
+      <div class="modal-img-wrap">
+        <img class="modal-img" id="modal-img" src="" alt="" />
+      </div>
+      <div class="modal-body">
+        <span class="text-xs font-mono tracking-[0.3em] uppercase text-accent mb-3 block" id="modal-label"></span>
+        <h3 class="text-xl md:text-2xl font-bold text-[#fafafa] tracking-tight mb-3" id="modal-headline"></h3>
+        <p class="text-[#a3a3a3] text-sm md:text-base leading-relaxed" id="modal-text"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section
+    class="section-over-hero relative py-16 md:py-24 px-6 md:px-16 lg:px-24 text-center"
+    style="background-color: #18181b"
+    data-theme="dark"
+  >
+    <div class="max-w-xl mx-auto">
+      <div data-reveal class="w-10 h-px bg-accent mx-auto mb-8"></div>
+      <p
+        data-reveal
+        style="--delay: 100ms"
+        class="text-xl md:text-2xl font-semibold text-ink mb-3"
+      >
+        These are yours. No strings attached.
+      </p>
+      <p
+        data-reveal
+        style="--delay: 200ms"
+        class="text-ink-muted text-sm md:text-base mb-8"
+      >
+        Use them wherever you want. If you ever want the full system behind them, we're a call away.
+      </p>
+      <a
+        data-reveal
+        style="--delay: 300ms"
+        href="mailto:hello@creativeaxe.co"
+        class="inline-flex items-center gap-3 px-7 py-3.5 rounded-full border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-black transition-all duration-300"
+      >
+        Let's Talk
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <script define:vars={{ creatives }}>
+    const backdrop = document.getElementById('modal-backdrop');
+    const content = document.getElementById('modal-content');
+    const closeBtn = document.getElementById('modal-close');
+    const modalImg = document.getElementById('modal-img');
+    const modalLabel = document.getElementById('modal-label');
+    const modalHeadline = document.getElementById('modal-headline');
+    const modalText = document.getElementById('modal-text');
+
+    function openModal(index) {
+      const c = creatives[index];
+      modalImg.src = c.src;
+      modalImg.alt = c.label + ' ad creative';
+      modalLabel.textContent = c.label;
+      modalHeadline.textContent = c.headline;
+      modalText.textContent = c.text;
+      backdrop.classList.add('is-open');
+      content.classList.add('is-open');
+      closeBtn.classList.add('is-open');
+      document.body.classList.add('modal-open');
+    }
+
+    function closeModal() {
+      backdrop.classList.remove('is-open');
+      content.classList.remove('is-open');
+      closeBtn.classList.remove('is-open');
+      document.body.classList.remove('modal-open');
+    }
+
+    document.querySelectorAll('[data-modal-trigger]').forEach(el => {
+      el.addEventListener('click', () => {
+        openModal(parseInt(el.dataset.modalTrigger));
+      });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</Base>
